@@ -2,22 +2,22 @@ $(document).ready(function() {
 
   var apple = {
     type: 'apple',
-    price: 0
+    price: 3
   };
 
   var orange = {
     type: 'orange',
-    price: 0
+    price: 7
   };
 
   var banana = {
     type: 'banana',
-    price: 0
+    price: 2
   };
 
   var grape = {
     type: 'grape',
-    price: 0
+    price: 10
   };
 
   var fruits = [apple, orange, banana, grape];
@@ -41,17 +41,19 @@ function chooseNewPrice() {
     fruits[i].price += randomNumber(-50, 50);
     if(fruits[i].price <= 0) {
       fruits[i].price = 0.54;
-      $('.price').empty().html('Price: '+ fruits[i].price);
-      return fruits[i].price
-    } else {
-      $('.price').empty().html('Price: '+ fruits[i].price);
-      return fruits[i].price
     }
+    if(fruits[i].price > 9.99) {
+      fruits[i].price = 9.99;
+    }
+
+    var $price = $('#' + fruits[i].type)
+      .find('.price')
+      .html('Price: '+ fruits[i].price.toLocaleString('en-US', {style: 'currency', currency: 'USD'}));
   }
 }
 
 function updatePrice() {
-  setInterval(chooseNewPrice, 150);
+  setInterval(chooseNewPrice, 1500);
 }
 
 function randomNumber(min, max){
