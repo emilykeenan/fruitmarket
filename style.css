@@ -1,0 +1,22 @@
+.fruit {
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 10px;
+}
+
+#apple {
+  background: red;
+}
+
+#orange {
+  background: orange;
+}
+
+#banana {
+  background: yellow;
+}
+
+#grape {
+  background: purple;
+}
