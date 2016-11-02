@@ -40,8 +40,13 @@ updatePrice();
 
 function chooseNewPrice() {
   for (var i = 0; i < fruits.length; i++) {
-    fruits[i].price = randomNumber(0, 999);
-    return console.log(fruits[i].price);
+    fruits[i].price += randomNumber(-50, 50);
+    if(fruits[i].price <= 0) {
+      fruits[i].price = 0.54;
+      return fruits[i].price
+    } else {
+      return fruits[i].price
+    }
   }
 }
 
