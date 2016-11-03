@@ -3,25 +3,29 @@
   margin: 40px auto 0 auto;
 }
 
+.totalCash {
+  text-align: center;
+}
+
 .fruit {
   height: 100px;
   width: 100px;
 }
 
 #apple {
-  background: url(images/apple.png) no-repeat top left;
+  background: url(images/apple.png) no-repeat top center;
 }
 
 #orange {
-  background: url(images/orange.png) no-repeat top left;
+  background: url(images/orange.png) no-repeat top center;
 }
 
 #banana {
-  background: url(images/bananas.png) no-repeat top left;
+  background: url(images/bananas.png) no-repeat top center;
 }
 
 #pear {
-  background: url(images/pear.png) no-repeat top left;
+  background: url(images/pear.png) no-repeat top center;
 }
 
 .buyButton {
@@ -31,4 +35,5 @@
 
 #container {
   text-align: center;
+  background-color: #666666;
 }

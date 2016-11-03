@@ -32,7 +32,7 @@ $(document).ready(function() {
   var fruits = [apple, orange, banana, pear];
   updatePrice();
   createFruits();
-  // setTimeout (timeLimit, 5000);
+  setTimeout (timeLimit, 300000);
 
   $('#container').on('click', '.buyButton', addToInventory);
   $('#container').on('click', '.sellButton', sellInventory);
@@ -74,7 +74,7 @@ function chooseNewPrice() {
 }
 
 function updatePrice() {
-  intervalID = setInterval(chooseNewPrice, 150);
+  intervalID = setInterval(chooseNewPrice, 15000);
 }
 
 function randomNumber(min, max){
