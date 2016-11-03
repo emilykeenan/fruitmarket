@@ -1,6 +1,7 @@
 #main {
   width: 800px;
   margin: 40px auto 0 auto;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .totalCash {
@@ -8,32 +9,52 @@
 }
 
 .fruit {
-  height: 100px;
+  height: 180px;
   width: 100px;
+  border-left: 2px solid #412b17;
+  border-radius: 10px;
 }
 
-#apple {
-  background: url(images/apple.png) no-repeat top center;
+#Apple {
+  background: url(images/apple.png) no-repeat center 12px;
 }
 
-#orange {
-  background: url(images/orange.png) no-repeat top center;
+#Orange {
+  background: url(images/orange.png) no-repeat center 12px;
 }
 
-#banana {
-  background: url(images/bananas.png) no-repeat top center;
+#Banana {
+  background: url(images/bananas.png) no-repeat center 12px;
 }
 
-#pear {
-  background: url(images/pear.png) no-repeat top center;
+#Pear {
+  background: url(images/pear.png) no-repeat center 12px;
+}
+
+.price {
+  color: white;
 }
 
 .buyButton {
-  margin: 100px 40px 0 auto;
+  margin: 112px 40px 10px auto;
   vertical-align: center;
+}
+
+h1 {
+  text-align: center;
 }
 
 #container {
   text-align: center;
-  background-color: #666666;
+  height: 180px;
+  background-color: #68472a;
+  border-radius: 10px;
+  margin-top: -10px;
+}
+
+#inventory {
+  border: 2px solid #412b17;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  padding: 20px;
 }
