@@ -1,40 +1,58 @@
 $(document).ready(function() {
 
-  var apple = {
-    type: 'apple',
-    price: 3
-  };
+  var totalCash = 100;
 
-  var orange = {
-    type: 'orange',
-    price: 7
-  };
+  function Fruit(type, price) {
+    this.type = type;
+    this.price = price;
+    this.count = function () {
+      return this.bought - this.sold;
+    };
+    this.totalPaid = 0;
+    this.bought = 0;
+    this.sold = 0;
+    this.avgPrice = function () {
+      if (isNaN(this.totalPaid / this.bought)) {
+        return '$0.00';
+    } else {
+      return (this.totalPaid / this.bought).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+      }
+    }
+  }
 
-  var banana = {
-    type: 'banana',
-    price: 2
-  };
+  var apple = new Fruit( 'apple', 3 );
 
-  var grape = {
-    type: 'grape',
-    price: 10
-  };
+  var orange = new Fruit ( 'orange', 7 );
 
-  var fruits = [apple, orange, banana, grape];
+  var banana = new Fruit ( 'banana', 2);
+
+  var pear = new Fruit ( 'pear', 10);
+
+  var fruits = [apple, orange, banana, pear];
   updatePrice();
   createFruits();
+
+  $('#container').on('click', '.buyButton', addToInventory);
+  $('#container').on('click', '.sellButton', sellInventory);
+
+
 
 //function for putting fruits on the dom and in inventory
   function createFruits() {
   for(var i = 0; i < fruits.length; i++) {
     $("#container").append('<div class="fruit" id="' + fruits[i].type +
-    '"><button class="sellButton">Buy</button><p class="price">Price: '+ fruits[i].price + '</p></div>'
+    '"><button class="buyButton">Buy</button><button class="sellButton">Sell</button><p class="price">Price: '+ fruits[i].price.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p></div>'
   );
-    $("#inventory").append('<div class="fruit-basket"></div>');
+    $("#inventory").append('<div class="fruit-basket"><p>' + fruits[i].type + ' count:' + fruits[i].count() +'</p></div>');
     var $el = $("#inventory").children().last();
-    $el.data('type', fruits[i].type);
+    $el.addClass(fruits[i].type);
+    console.log($el);
+    $('#inventory').append('<p class="averagePrice"> The average price is :' + fruits[i].avgPrice() + '</p>');
+
   }
+    $('#inventory').append('<p class="totalCash"> Toast Cash :' + totalCash.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>');
 }
+
 
 function chooseNewPrice() {
   for (var i = 0; i < fruits.length; i++) {
@@ -46,18 +64,59 @@ function chooseNewPrice() {
       fruits[i].price = 9.99;
     }
 
-    var $price = $('#' + fruits[i].type)
+    $('#' + fruits[i].type)
       .find('.price')
       .html('Price: '+ fruits[i].price.toLocaleString('en-US', {style: 'currency', currency: 'USD'}));
   }
 }
 
 function updatePrice() {
-  setInterval(chooseNewPrice, 1500);
+  setInterval(chooseNewPrice, 150);
 }
 
 function randomNumber(min, max){
     return Math.floor(Math.random() * (1 + max - min) + min) / 100;
 }
+
+function addToInventory() {
+  var fruit = $(this).parent().attr('id');
+  for (var i = 0; i < fruits.length; i++) {
+    if(fruits[i].type == fruit) {
+      fruit = fruits[i];
+    }
+  }
+
+  if(totalCash > fruit.price) {
+  fruit.bought++;
+  fruit.totalPaid += fruit.price;
+  totalCash -= fruit.price;
+  console.log(totalCash);
+  $('#inventory').empty();
+  $('#container').empty();
+  createFruits();
+} else {
+  alert('YOU\'RE TOO POOR');
+  }
+}
+
+function sellInventory () {
+  var fruit = $(this).parent().attr('id');
+  for (var i = 0; i < fruits.length; i++) {
+    if(fruits[i].type == fruit) {
+      fruit = fruits[i];
+    }
+  }
+    if (fruit.count() > 0) {
+      fruit.sold++;
+      totalCash += fruit.price;
+      $('#inventory').empty();
+      $('#container').empty();
+      createFruits();
+    } else {
+      alert('AIN\'T GOT NONE')
+    }
+
+    }
+
 
 })

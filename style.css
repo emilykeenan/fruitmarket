@@ -6,17 +6,26 @@
 }
 
 #apple {
-  background: red;
+  background: url(images/apple.png) no-repeat top left;
 }
 
 #orange {
-  background: orange;
+  background: url(images/orange.png) no-repeat top left;
 }
 
 #banana {
-  background: yellow;
+  background: url(images/bananas.png) no-repeat top left;
 }
 
-#grape {
-  background: purple;
+#pear {
+  background: url(images/pear.png) no-repeat top left;
+}
+
+.buyButton {
+  margin: 100px 40px 0 auto;
+  vertical-align: center;
+}
+
+#container {
+  text-align: center;
 }
