@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   var totalCash = 100;
+  var intervalID;
 
   function Fruit(type, price) {
     this.type = type;
@@ -31,6 +32,7 @@ $(document).ready(function() {
   var fruits = [apple, orange, banana, pear];
   updatePrice();
   createFruits();
+  setTimeout (timeLimit, 5000);
 
   $('#container').on('click', '.buyButton', addToInventory);
   $('#container').on('click', '.sellButton', sellInventory);
@@ -54,6 +56,7 @@ $(document).ready(function() {
 }
 
 
+
 function chooseNewPrice() {
   for (var i = 0; i < fruits.length; i++) {
     fruits[i].price += randomNumber(-50, 50);
@@ -71,7 +74,7 @@ function chooseNewPrice() {
 }
 
 function updatePrice() {
-  setInterval(chooseNewPrice, 150);
+  intervalID = setInterval(chooseNewPrice, 150);
 }
 
 function randomNumber(min, max){
@@ -118,5 +121,24 @@ function sellInventory () {
 
     }
 
+  function timeLimit() {
+    clearInterval(intervalID);
+    sellItAll();
+    var endResult = totalCash - 100;
+    if (endResult >= 0) {
+      $('#inventory').empty().append('<p>You made ' + endResult.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>')
+    } else {
+    $('#inventory').empty().append('<p>You lost ' + Math.abs(endResult).toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>')
+    }
+  }
+
+  function sellItAll () {
+    for (var i = 0; i < fruits.length; i++) {
+       totalCash += fruits[i].price * fruits[i].count();
+       fruits[i].sold += fruits[i].count();
+       console.log(fruits[i].count());
+    }
+
+  }
 
 })
