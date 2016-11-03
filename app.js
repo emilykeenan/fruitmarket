@@ -32,7 +32,7 @@ $(document).ready(function() {
   var fruits = [apple, orange, banana, pear];
   updatePrice();
   createFruits();
-  setTimeout (timeLimit, 5000);
+  // setTimeout (timeLimit, 5000);
 
   $('#container').on('click', '.buyButton', addToInventory);
   $('#container').on('click', '.sellButton', sellInventory);
@@ -42,14 +42,14 @@ $(document).ready(function() {
 //function for putting fruits on the dom and in inventory
   function createFruits() {
   for(var i = 0; i < fruits.length; i++) {
-    $("#container").append('<div class="fruit" id="' + fruits[i].type +
+    $("#container").append('<div class="fruit col-sm-3" id="' + fruits[i].type +
     '"><button class="buyButton">Buy</button><button class="sellButton">Sell</button><p class="price">Price: '+ fruits[i].price.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p></div>'
   );
-    $("#inventory").append('<div class="fruit-basket"><p>' + fruits[i].type + ' count:' + fruits[i].count() +'</p></div>');
+    $("#inventory").append('<div class="fruit-basket col-sm-3"><p>' + fruits[i].type + ' count:' + fruits[i].count() +'</p></div>');
     var $el = $("#inventory").children().last();
     $el.addClass(fruits[i].type);
     console.log($el);
-    $('#inventory').append('<p class="averagePrice"> The average price is :' + fruits[i].avgPrice() + '</p>');
+    $el.append('<p class="averagePrice"> The average price is :' + fruits[i].avgPrice() + '</p>');
 
   }
     $('#inventory').append('<p class="totalCash"> Toast Cash :' + totalCash.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>');

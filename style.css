@@ -1,8 +1,11 @@
+#main {
+  width: 800px;
+  margin: 40px auto 0 auto;
+}
+
 .fruit {
   height: 100px;
   width: 100px;
-  float: left;
-  margin-right: 10px;
 }
 
 #apple {
