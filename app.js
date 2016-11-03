@@ -126,9 +126,9 @@ function sellInventory () {
     sellItAll();
     var endResult = totalCash - 100;
     if (endResult >= 0) {
-      $('#inventory').empty().append('<p>You made ' + endResult.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>')
+      $('#inventory').empty().append('<h1>You made ' + endResult.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</h1>')
     } else {
-    $('#inventory').empty().append('<p>You lost ' + Math.abs(endResult).toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</p>')
+    $('#inventory').empty().append('<h1>You lost ' + Math.abs(endResult).toLocaleString('en-US', {style: 'currency', currency: 'USD'}) + '</h1>')
     }
   }
 
